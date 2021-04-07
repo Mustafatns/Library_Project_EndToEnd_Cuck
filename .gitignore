@@ -1,0 +1,4 @@
+# Project exclude paths
+/.idea/
+/Library_Project_EndToEnd_Cuck.iml
+/target/
