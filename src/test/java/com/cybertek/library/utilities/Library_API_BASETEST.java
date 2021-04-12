@@ -31,7 +31,8 @@ public class Library_API_BASETEST {
     }
 
     public static String getToken(String username, String password) {
-        return given()
+        String myToken =
+         given()
                 .contentType(ContentType.URLENC)
                 .formParam("email", username)
                 .formParam("password", password).
@@ -39,6 +40,7 @@ public class Library_API_BASETEST {
                 .post("/login")
                 .path("token");
 
+        return myToken;
     }
 
 
