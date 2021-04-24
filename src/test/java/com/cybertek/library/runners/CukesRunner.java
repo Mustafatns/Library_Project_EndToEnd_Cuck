@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/feature",
         glue = "com/cybertek/library/step_definitions",
         dryRun = false,
-        tags = "@runAll"
+        tags = "@AutoFrontEndLogin"
 )
 public class CukesRunner {
 }
