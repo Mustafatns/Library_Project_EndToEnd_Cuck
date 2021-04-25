@@ -10,8 +10,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import org.testng.asserts.SoftAssert;
-
+//import org.testng.asserts.SoftAssert;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
