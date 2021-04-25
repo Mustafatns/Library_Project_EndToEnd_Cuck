@@ -1,21 +1,15 @@
 package com.cybertek.library.utilities;
-import com.github.javafaker.Faker;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.restassured.http.ContentType;
-import org.junit.jupiter.api.*;
-
-import java.util.HashMap;
-import java.util.Map;
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-
-import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 
 public class Library_API_BASETEST {
 
 //    public static String libraryToken;
-    @BeforeAll
+    @Before
     public static void init(){
 
         RestAssured.baseURI = "http://library1.cybertekschool.com";
@@ -25,7 +19,7 @@ public class Library_API_BASETEST {
 
     }
 
-    @AfterAll
+    @After
     public static void cleanUp(){
         RestAssured.reset();
     }

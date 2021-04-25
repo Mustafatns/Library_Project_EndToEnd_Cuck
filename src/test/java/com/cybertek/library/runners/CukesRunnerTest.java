@@ -11,10 +11,10 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber.json",
                 "rerun:target/rerun.txt"
         },
-        features = "src/test/resources/feature",
+        features = "src/test/resources/features",
         glue = "com/cybertek/library/step_definitions",
         dryRun = false,
-        tags = "@AutoFrontEndLogin"
+        tags = "@loginApi"
 )
-public class CukesRunner {
+public class CukesRunnerTest {
 }
