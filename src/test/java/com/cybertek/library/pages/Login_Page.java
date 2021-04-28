@@ -20,4 +20,29 @@ public class Login_Page {
     @FindBy(xpath = "//button[@class='btn btn-lg btn-primary btn-block']")
     public WebElement signInButton;
 
+    // =========================================================
+
+//    public WebElement getEmailInput() {
+//        return emailInput;
+//    }
+//
+//    public void setEmailInput(WebElement emailInput) {
+//        this.emailInput = emailInput;
+//    }
+//
+//    public WebElement getPasswordInput() {
+//        return passwordInput;
+//    }
+//
+//    public void setPasswordInput(WebElement passwordInput) {
+//        this.passwordInput = passwordInput;
+//    }
+//
+//    public WebElement getSignInButton() {
+//        return signInButton;
+//    }
+//
+//    public void setSignInButton(WebElement signInButton) {
+//        this.signInButton = signInButton;
+//    }
 }

@@ -10,6 +10,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import org.openqa.selenium.WebElement;
 //import org.testng.asserts.SoftAssert;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static io.restassured.RestAssured.given;
@@ -25,17 +26,15 @@ public class AutoLogin_StepDefinitions {
 
 
     @When("the user logs in with {string} and {string} sees {string}")
-    public void the_user_logs_in_with_and_sees(String username, String password, String page) {
+    public void the_user_logs_in_with_and_sees(String username, String password, String page) throws InterruptedException {
         Login_Page loginPage = new Login_Page();
         Dashboard_Page dashboardPage = new Dashboard_Page();
-
 
         loginPage.emailInput.sendKeys(username);
         loginPage.passwordInput.sendKeys(password);
         loginPage.signInButton.click();
 
-        BrowserUtils.waitForVisibility(dashboardPage.dashTitle, 1);
-        String actualTitle = dashboardPage.dashTitle.getText();
+        String actualTitle = dashboardPage.dashTitleText();
         assertThat(actualTitle,is(equalTo(page)));
 
         Driver.closeDriver();
