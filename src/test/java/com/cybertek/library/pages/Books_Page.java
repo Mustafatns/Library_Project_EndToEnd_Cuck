@@ -19,6 +19,8 @@ public class Books_Page {
     @FindBy(xpath = "//a[@class=''btn btn-lg btn-outline btn-primary btn-sm add_book_btn]")
     public WebElement addBookButton;
 
+    @FindBy(xpath = "//h5[.='Add Book']")
+    public WebElement addBookTitle;
     @FindBy(xpath = "//input[@placeholder='Book Name']")
     public WebElement bookNameBox;
 
@@ -32,7 +34,7 @@ public class Books_Page {
     public WebElement authorBox;
 
     @FindBy(id = "book_group_id")
-    public List<WebElement> bookGroupDropdown;
+    public WebElement bookGroupDropdown;
 
     @FindBy(id = "description")
     public WebElement descriptionBox;
