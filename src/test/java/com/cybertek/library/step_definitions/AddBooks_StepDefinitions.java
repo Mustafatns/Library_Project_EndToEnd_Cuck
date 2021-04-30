@@ -6,9 +6,15 @@ import com.cybertek.library.pages.Login_Page;
 import com.cybertek.library.utilities.BrowserUtils;
 import com.cybertek.library.utilities.ConfigurationReader;
 import com.cybertek.library.utilities.Driver;
+import com.cybertek.library.utilities.ExcelSetUp;
 import io.cucumber.java.en.*;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.junit.Assert;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.IOException;
 
 public class AddBooks_StepDefinitions {
     Dashboard_Page dashboard_page = new Dashboard_Page();
@@ -42,13 +48,45 @@ public class AddBooks_StepDefinitions {
     }
 
     @Then("Librarian clicks at Add Book button and fills in the fields")
-    public void librarian_clicks_at_add_book_button_and_fills_in_the_fields() {
+    public void librarian_clicks_at_add_book_button_and_fills_in_the_fields() throws IOException {
+
+        books_page.addBookButton.click();
+
+        XSSFSheet sheet = ExcelSetUp.readSetUp("TestApache.xlsx","New Books");
+
+        BrowserUtils.waitForVisibility(books_page.addBookTitle, 5);
+
+        for(int rowNum = 1; rowNum <= sheet.getLastRowNum(); rowNum++ ){
+            XSSFRow currentRow = sheet.getRow(rowNum);
+            String bookName = currentRow.getCell(0).getStringCellValue();
+            books_page.bookNameBox.sendKeys(bookName);
+            String isbn = currentRow.getCell(1).getStringCellValue();
+            books_page.isbnBox.sendKeys(isbn);
+            String year = currentRow.getCell(2).getStringCellValue();
+            books_page.yearBox.sendKeys(year);
+            String author = currentRow.getCell(3).getStringCellValue();
+            books_page.authorBox.sendKeys(author);
+
+            String bookCategory = currentRow.getCell(4).getStringCellValue();
+
+            Select bookGroups = new Select(books_page.bookGroupDropdown);
+            bookGroups.getOptions().equals(bookCategory);
+
+            String description = currentRow.getCell(5).getStringCellValue();
+            books_page.descriptionBox.sendKeys(description);
+
+        }
+
+        ExcelSetUp.fileInputStream.close();
+        ExcelSetUp.workbook.close();
+
+
 
 
     }
 
     @Then("Librarian clicks at save changes button")
     public void librarian_clicks_at_save_changes_button() {
-
+        books_page.saveButton.click();
     }
 }
