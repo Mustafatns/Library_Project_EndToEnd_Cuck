@@ -13,7 +13,10 @@ public class Dashboard_Page {
     }
 
     @FindBy(xpath = "//*[@id='menu_item']/li[1]/a/span[1]")
-    private WebElement dashTitle;
+    public WebElement dashTitle;
+
+    @FindBy(xpath = "//span[.='Books']")
+    public WebElement booksButton;
 
 
     public String dashTitleText() throws InterruptedException {
