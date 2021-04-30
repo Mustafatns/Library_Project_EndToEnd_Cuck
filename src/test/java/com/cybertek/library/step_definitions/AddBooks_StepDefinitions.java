@@ -10,10 +10,12 @@ import com.cybertek.library.utilities.ExcelSetUp;
 import io.cucumber.java.en.*;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Assert;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class AddBooks_StepDefinitions {
@@ -52,34 +54,57 @@ public class AddBooks_StepDefinitions {
 
         books_page.addBookButton.click();
 
-        XSSFSheet sheet = ExcelSetUp.readSetUp("TestApache.xlsx","New Books");
+       //XSSFSheet sheet = ExcelSetUp.readSetUp("src/test/resources/TestData/TestApache.xlsx","NewBooks");
+
+        String excelPath = "src/test/resources/TestData/TestApache.xlsx";
+        FileInputStream fileInputStream = new FileInputStream(excelPath);
+        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
+        XSSFSheet excelSheet = workbook.getSheet("NewBooks");
+
+
 
         BrowserUtils.waitForVisibility(books_page.addBookTitle, 5);
 
-        for(int rowNum = 1; rowNum <= sheet.getLastRowNum(); rowNum++ ){
-            XSSFRow currentRow = sheet.getRow(rowNum);
+        for(int rowNum = 1; rowNum <= excelSheet.getLastRowNum(); rowNum++ ){
+            XSSFRow currentRow = excelSheet.getRow(rowNum);
+
+            BrowserUtils.wait(1);
             String bookName = currentRow.getCell(0).getStringCellValue();
             books_page.bookNameBox.sendKeys(bookName);
+
+            BrowserUtils.wait(1);
             String isbn = currentRow.getCell(1).getStringCellValue();
             books_page.isbnBox.sendKeys(isbn);
-            String year = currentRow.getCell(2).getStringCellValue();
-            books_page.yearBox.sendKeys(year);
+
+            BrowserUtils.wait(1);
+            Double year = currentRow.getCell(2).getNumericCellValue();
+            int intYear = year.intValue();
+            books_page.yearBox.sendKeys(String.valueOf(intYear));
+
+            BrowserUtils.wait(1);
             String author = currentRow.getCell(3).getStringCellValue();
             books_page.authorBox.sendKeys(author);
 
+            BrowserUtils.wait(1);
             String bookCategory = currentRow.getCell(4).getStringCellValue();
-
+            BrowserUtils.wait(1);
             Select bookGroups = new Select(books_page.bookGroupDropdown);
-            bookGroups.getOptions().equals(bookCategory);
+            bookGroups.selectByVisibleText(bookCategory);
 
+            BrowserUtils.wait(1);
             String description = currentRow.getCell(5).getStringCellValue();
             books_page.descriptionBox.sendKeys(description);
 
+
+            books_page.saveButton.click();
         }
 
-        ExcelSetUp.fileInputStream.close();
-        ExcelSetUp.workbook.close();
 
+
+        fileInputStream.close();
+        workbook.close();
+
+        System.out.println("dahdadadadad");
 
 
 
@@ -87,6 +112,8 @@ public class AddBooks_StepDefinitions {
 
     @Then("Librarian clicks at save changes button")
     public void librarian_clicks_at_save_changes_button() {
-        books_page.saveButton.click();
+       // books_page.saveButton.click();
+
+        System.out.println("blabla");
     }
 }

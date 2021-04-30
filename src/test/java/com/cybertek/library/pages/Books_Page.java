@@ -16,7 +16,7 @@ public class Books_Page {
     @FindBy(xpath = "//h3[.='Book Management']")
     public WebElement title;
 
-    @FindBy(xpath = "//a[@class=''btn btn-lg btn-outline btn-primary btn-sm add_book_btn]")
+    @FindBy(xpath = "//a[@class='btn btn-lg btn-outline btn-primary btn-sm add_book_btn']")
     public WebElement addBookButton;
 
     @FindBy(xpath = "//h5[.='Add Book']")
