@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class AddBooks_StepDefinitions {
+
     Dashboard_Page dashboard_page = new Dashboard_Page();
     Books_Page books_page = new Books_Page();
 
@@ -47,6 +48,7 @@ public class AddBooks_StepDefinitions {
     public void librarian_clicks_books_button_and_sees(String title) {
         dashboard_page.booksButton.click();
         Assert.assertEquals(books_page.title.getText(),title);
+
     }
 
     @Then("Librarian clicks at Add Book button and fills in the fields")
