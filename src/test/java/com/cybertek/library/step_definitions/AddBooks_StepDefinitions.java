@@ -37,7 +37,6 @@ public class AddBooks_StepDefinitions {
         login_page.passwordInput.sendKeys(password);
         login_page.signInButton.click();
 
-        BrowserUtils.waitForVisibility(dashboard_page.dashTitle, 5);
 
         Assert.assertEquals(dashboard_page.dashTitleText(),title);
 
