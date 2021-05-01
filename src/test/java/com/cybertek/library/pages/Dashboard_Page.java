@@ -12,7 +12,7 @@ public class Dashboard_Page {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(xpath = "//*[@id='menu_item']/li[1]/a/span[1]")
+    @FindBy(xpath = "//span[.='Dashboard']")
     public WebElement dashTitle;
 
     @FindBy(xpath = "//span[.='Books']")
