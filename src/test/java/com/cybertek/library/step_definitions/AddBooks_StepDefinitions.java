@@ -38,7 +38,7 @@ public class AddBooks_StepDefinitions {
         login_page.signInButton.click();
 
 
-        Assert.assertEquals(dashboard_page.dashTitleText(),title);
+        Assert.assertEquals(dashboard_page.dashTitle.getText(),title);
 
 
     }
